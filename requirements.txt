@@ -1,0 +1,16 @@
+sentence-transformers>=2.2.2
+faiss-cpu>=1.7.4
+nltk>=3.8.1
+tqdm>=4.66.0
+pandas>=2.1.1
+openpyxl>=3.1.2
+xlrd>=2.0.1
+
+# FAISS:
+# Use faiss-cpu if you’re not using GPU.
+# For GPU, you can switch to faiss-gpu (requires CUDA).
+
+# NLTK:
+# Download the punkt tokenizer at runtime:
+# import nltk
+# nltk.download("punkt")
