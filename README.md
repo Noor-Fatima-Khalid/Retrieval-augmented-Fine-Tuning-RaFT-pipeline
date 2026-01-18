@@ -4,49 +4,38 @@ This repository implements a **Retrieval-augmented Fine-Tuning (RaFT) pipeline**
 
 ## 🧠 Motivation and Impact
 
-In building an AI interviewer, a key challenge is ensuring that the model **remains conceptually grounded** and can ask relevant, insightful follow-up questions. Traditional QA datasets often provide only questions and answers, which leads to models that:
-
+In building an AI interviewer, a key challenge is ensuring that the model **remains conceptually grounded** and can ask relevant, insightful follow-up questions. We crafted a dataset that had this format: Context | Difficulty | Questions | Ideal Answers. The context only contained keywords of other approaches that could be used to answer the question. It lead the model to:
 - Memorize surface-level patterns without true understanding
 - Generate repetitive or generic follow-ups
 - Miss connections between related concepts
-- Hallucinate or provide incomplete reasoning
+- Hallucinate/provide incomplete reasoning
 
-To address these issues, we developed a **Retrieval-augmented Fine-Tuning (RaFT) pipeline** that enriches datasets with **concept-level, merged context** derived from a structured knowledge base. By pairing each question with rich, interviewer-style contextual information, the model gains:
+To address these issues, We made a comprehensive knowledge base of all the domains. Then we developed a **Retrieval-augmented Fine-Tuning (RaFT) pipeline** that enriches datasets with **concept-level, merged context** derived from the structured knowledge base. Each topic in the knowledge base is based on this template:
+- Name: The concept/topic 
+- Category: Core principle / Relationship / Design Pattern / Best Practice
+- Difficulty: Easy / Medium / Hard 
+- Tags: Keywords for retrieval 
+- Definition: Formal explanation of the concept.
+- Key Properties: Essential characteristics or rules.
+- Related Concepts: Links to other concepts
+= How to Implement: Step-by-step guidance for applying the concept in code.
+- Variants / Language Differences: Any language-specific considerations (e.g., in OOP: C++ destructors, Java interfaces).
+- Common Patterns: Typical ways the concept is used in real projects
+- Why It Exists: Explain the motivation behind the concept.
+- Trade-offs: Pros/cons, alternatives, or pitfalls if misused.
+- Best Practices: Recommendations for correct usage.
+- Code Snippet: Example demonstrating the concept. Include comments explaining reasoning.
+- Real-World Analogy: Optional but helps reasoning and context retrieval.
+- Common Mistakes: Things developers frequently get wrong.
+- Consequences: Why mistakes are bad.
+- How to Avoid: Tips or rules to prevent misuse.
+- Questions the concept can answer: Helpful for retrieval-augmented pipelines.
+- Cross-concept connections: How this concept interacts with others (useful for embeddings).
 
+By pairing each question with rich, interviewer-style contextual information, the model gains:
 - Consistent exposure to domain knowledge
 - Awareness of trade-offs, best practices, and common mistakes
 - Concept-level reasoning aligned with human experts
-
-This approach bridges the gap between **raw datasets** and **expert-level interviewer behavior**, producing supervision data that is both **scalable and high quality**.
-
----
-
-## ⚡ Before vs After Example
-
-### Before RaFT Enrichment
-| Question | Ideal Answer |
-|----------|--------------|
-| Explain polymorphism in OOP. | Polymorphism allows objects of different classes to be treated as objects of a common superclass. |
-
-**Observation:**  
-- Model trained on this data tends to give **shallow answers**, may ignore edge cases, and rarely connects related concepts like inheritance or interface design.
-
----
-
-### After RaFT Enrichment
-| Question | Ideal Answer | Detailed Context |
-|----------|--------------|----------------|
-| Explain polymorphism in OOP. | Polymorphism allows objects of different classes to be treated as objects of a common superclass. | **Concept: Polymorphism**  
-Polymorphism is a core OOP principle enabling objects to take many forms. It allows method overriding and interface implementation. Key benefits include flexible code, reduced duplication, and easier maintenance. Common mistakes include confusing polymorphism with inheritance. Follow-Up Prompts: 1. Explain why this concept is important. 2. Provide a code example demonstrating it. 3. Describe common mistakes developers make. 4. Discuss trade-offs and best practices. |
-
-**Observation:**  
-- Model now receives **rich, concept-grounded context**  
-- Can reason about trade-offs, provide code examples, and generate meaningful follow-ups  
-- Reduces hallucination and improves answer quality during fine-tuning
-
----
-
-This example illustrates how the RaFT pipeline transforms a basic QA dataset into **training data suitable for a concept-aware AI interviewer**, bridging the gap between surface-level answers and deep conceptual understanding.
 
 The pipeline takes:
 - A **domain-specific knowledge base** (concept-structured text)
