@@ -1,8 +1,8 @@
-# 🔍 RaFT-Based Dataset Enrichment for Interviewer Model Fine-Tuning
+# RaFT-Based Dataset Enrichment for Interviewer Model Fine-Tuning
 
 This repository implements a **Retrieval-augmented Fine-Tuning (RaFT) pipeline** for enriching question–answer datasets with **high-quality, concept-grounded context**, designed specifically for training **AI interviewer models**.
 
-## 🧠 Motivation and Impact
+## Motivation and Impact (For my specific use case - IntelliHire)
 
 In building an AI interviewer, a key challenge is ensuring that the model **remains conceptually grounded** and can ask relevant, insightful follow-up questions. We crafted a dataset that had this format: Context | Difficulty | Questions | Ideal Answers. The context only contained keywords of other approaches that could be used to answer the question. It lead the model to:
 - Memorize surface-level patterns without true understanding
@@ -37,16 +37,17 @@ By pairing each question with rich, interviewer-style contextual information, th
 - Awareness of trade-offs, best practices, and common mistakes
 - Concept-level reasoning aligned with human experts
 
-The pipeline takes:
+---
+
+### The pipeline takes:
 - A **domain-specific knowledge base** (concept-structured text)
 - A **question dataset** (Excel `.xls/.xlsx`)
 - And produces **rich, merged, concept-aware context** for every question
 
 The enriched context is written back into the dataset as a new column, making it directly usable for **context-aware fine-tuning**.
 
----
 
-## ✨ What This Pipeline Does
+## What This Pipeline Does
 
 - Chunks a knowledge base by **concept and semantic sections**
 - Embeds chunks using **Sentence Transformers**
