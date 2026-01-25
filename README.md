@@ -39,8 +39,8 @@ By pairing each question with rich, interviewer-style contextual information, th
 
 ---
 
-### Chunking problem: 
-Firstly, i made larger chunks but then i tried chunking into small chunks but the small chunks donot 
+### Chunking Strategy
+I experimented with very small chunks but found that over-fragmentation decreases context quality, producing disjointed retrieval results. The pipeline now uses moderately sized, semantically coherent chunks that preserve meaning while remaining embedding-friendly. This balance allows retrieved context to include definitions, relationships, mistakes, and examples in one place, which helps the model learn reasoning patterns rather than isolated facts. This enriched context can teach reasoning when it shows structure, contrasts, and follow-ups. This approach is not pure recall, as the model can generalize to new scenarios when concepts are presented cohesively.
 
 ### The pipeline takes:
 - A **domain-specific knowledge base** (concept-structured text)
