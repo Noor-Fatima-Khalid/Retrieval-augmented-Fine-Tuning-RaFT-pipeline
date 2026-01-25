@@ -39,6 +39,9 @@ By pairing each question with rich, interviewer-style contextual information, th
 
 ---
 
+### Chunking problem: 
+Firstly, i made larger chunks but then i tried chunking into small chunks but the small chunks donot 
+
 ### The pipeline takes:
 - A **domain-specific knowledge base** (concept-structured text)
 - A **question dataset** (Excel `.xls/.xlsx`)
