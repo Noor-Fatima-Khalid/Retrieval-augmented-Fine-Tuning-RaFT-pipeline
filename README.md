@@ -37,9 +37,8 @@ By pairing each question with rich, interviewer-style contextual information, th
 - Awareness of trade-offs, best practices, and common mistakes
 - Concept-level reasoning aligned with human experts
 
----
 
-### Chunking Strategy
+## Chunking Strategy
 I experimented with very small chunks but found that over-fragmentation decreases context quality, producing disjointed retrieval results. The pipeline now uses moderately sized, semantically coherent chunks that preserve meaning while remaining embedding-friendly. This balance allows retrieved context to include definitions, relationships, mistakes, and examples in one place, which helps the model learn reasoning patterns rather than isolated facts. This enriched context can teach reasoning when it shows structure, contrasts, and follow-ups. This approach is not pure recall, as the model can generalize to new scenarios when concepts are presented cohesively.
 
 ### The pipeline takes:
@@ -61,8 +60,6 @@ The enriched context is written back into the dataset as a new column, making it
 
 All processing is done locally and is **model-agnostic**.
 
----
-
 ## Input Dataset Format
 
 The pipeline expects an Excel dataset with at least the following columns:
@@ -74,8 +71,6 @@ The pipeline expects an Excel dataset with at least the following columns:
 
 Additional columns (e.g. Difficulty, Topic, Context) are preserved.
 
----
-
 ## Output
 
 The output is a **non-destructive enriched Excel file** containing all original columns plus the new column (detailed_context)
@@ -86,8 +81,6 @@ This output is suitable for:
 - RAG evaluation datasets
 - Interview simulation models
 
----
-
 ## Tech Stack
 
 - `sentence-transformers`
@@ -97,8 +90,6 @@ This output is suitable for:
 - `tqdm`
 - `Python 3.10+` 
 
----
-
 ## Use Cases
 
 - Training AI interviewers  
@@ -107,8 +98,6 @@ This output is suitable for:
 - Knowledge-grounded instruction datasets  
 - LLM evaluation and probing
 This is especially effective for **technical interviewers**, **assessment bots**, and **domain-specific LLMs**.
-
----
 
 ## Status
 This project is ready for dataset enrichment and scales cleanly to hundreds of questions and thousands of knowledge chunks.
